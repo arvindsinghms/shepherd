@@ -32,18 +32,19 @@ class HomeComponent extends Component {
 
   addClient() {
     let clientName = this.state.value;
-    const cb = client => {
-      // this.setState({
-      //   clients: [...this.state.clients, client],
-      //   value: '',
-      //   isLoading: false
-      // });
-    };
+    // const cb = client => {
+    // this.setState({
+    //   clients: [...this.state.clients, client],
+    //   value: '',
+    //   isLoading: false
+    // });
+    // };
     if (this.state.value.trim() !== '') {
       // this.setState({
       //   isLoading: true
       // });
-      clientsAPI.add(clientName, cb);
+      // clientsAPI.add(clientName, cb);
+      this.props.addClient(clientName);
     }
   }
 

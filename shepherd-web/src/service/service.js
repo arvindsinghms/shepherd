@@ -48,7 +48,7 @@ export const getAllClients = () => {
  * @param clientName
  * @returns {Promise<any>}
  */
-export const addClient = (clientName, cb) => {
+export const addNewClientOld = (clientName, cb) => {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState === 4 && xhttp.status === 200) {
@@ -62,6 +62,24 @@ export const addClient = (clientName, cb) => {
   xhttp.open('POST', registerClientUrl, true);
   xhttp.setRequestHeader('Content-type', 'application/json');
   xhttp.send(JSON.stringify({ clientName: clientName }));
+};
+
+export const addNewClient = clientName => {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', registerClientUrl);
+    xhr.onload = () => {
+      debugger;
+      const res = {
+        clientName: clientName,
+        clientId: JSON.parse(xhr.responseText).clientId
+      };
+      return resolve(res);
+    };
+    xhr.onerror = () => reject(xhr.statusText);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify({ clientName }));
+  });
 };
 
 /**

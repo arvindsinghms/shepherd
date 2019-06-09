@@ -21,7 +21,7 @@ export const clientsAPI = {
     return {};
   },
   add: function(clientName, cb) {
-    addClient(clientName, cb);
+    // addClient(clientName, cb);
   }
 };
 

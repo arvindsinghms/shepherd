@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 import {
-  addClient,
   getAllClients,
+  addNewClient,
   fetchEndPoints,
   createEndPoint,
   updateEndPoint,
@@ -14,26 +14,21 @@ function url() {
 }
 
 export function receiveClients(data) {
-  return { type: types.RECEIVE_CLIENTS, clients: data };
+  return { type: types.FETCH_CLIENTS_SUCCESS, clients: data };
 }
 
-// export function fetchClients() {
-//   return dispatch => {
-//     return fetch(url(), {
-//       method: 'GET',
-//       mode: 'cors',
-//       credentials: 'include',
-//       headers: {
-//         Accept: 'application/json'
-//       }
-//     })
-//       .then(response => response.json())
-//       .then(json => dispatch(receiveClients(json)));
-//   };
-// }
+export function newClientAdded(data) {
+  return { type: types.ADD_CLIENT_SUCCESS, client: data };
+}
 
 export function fetchClients() {
   return dispatch => {
     return getAllClients().then(data => dispatch(receiveClients(data)));
+  };
+}
+
+export function addClient(clientName) {
+  return dispatch => {
+    return addNewClient(clientName).then(data => dispatch(newClientAdded(data)));
   };
 }

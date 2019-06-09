@@ -1,20 +1,16 @@
 import initialState from './initialState';
-import { FETCH_CLIENTS, RECEIVE_CLIENTS, ADD_CLIENT } from '../actions/actionTypes';
+import { FETCH_CLIENTS_SUCCESS, ADD_CLIENT_SUCCESS } from '../actions/actionTypes';
 
 export default function stuff(state = initialState.clients, action) {
   let newState;
   switch (action.type) {
-    case FETCH_CLIENTS:
-      console.log('FETCH_CLIENTS Action');
-      return action;
-    case RECEIVE_CLIENTS:
-      debugger;
+    case FETCH_CLIENTS_SUCCESS:
       newState = action.clients;
-      console.log('RECEIVE_CLIENTS Action');
       return newState;
-    case ADD_CLIENT:
-      console.log('ADD_CLIENT Action');
-      return action;
+    case ADD_CLIENT_SUCCESS:
+      debugger;
+      newState = [...state, action.client];
+      return newState;
     default:
       return state;
   }

@@ -1,9 +1,9 @@
 import HomeComponent from '../../Components/HomeComponent/HomeComponent';
 import { connect } from 'react-redux';
 
-import { fetchClients } from '../../actions/actions';
+import { fetchClients, addClient } from '../../actions/actions';
 
-const actions = { fetchClients };
+const actions = { fetchClients, addClient };
 
 function mapStateToProps(state) {
   return {
